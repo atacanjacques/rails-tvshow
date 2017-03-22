@@ -1,2 +1,2 @@
 # tvshow
-A Ruby serie application (ESGI sutdents work 16-17)
+A Ruby tvshow application (ESGI sutdents work 16-17)
