@@ -8,6 +8,7 @@
       <th>Nom</th>
       <th>Statut</th>
       <th>Duree</th>
+      <th>Channel</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,6 +19,7 @@
         <td><%= tv_show.nom %></td>
         <td><%= tv_show.statut %></td>
         <td><%= tv_show.duree %></td>
+        <td><%= tv_show.channel_id %></td>
         <td><%= link_to 'Show', tv_show %></td>
         <td><%= link_to 'Edit', edit_tv_show_path(tv_show) %></td>
         <td><%= link_to 'Destroy', tv_show, method: :delete, data: { confirm: 'Are you sure?' } %></td>
