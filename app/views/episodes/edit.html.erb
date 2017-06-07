@@ -1,6 +1,5 @@
-<h1>Editing Episode</h1>
+<h1>Édition d'un épisode</h1>
 
-<%= render 'form', episode: @episode %>
+<%= render partial: 'form', locals: {submit: 'Modifier'} %>
 
-<%= link_to 'Show', @episode %> |
-<%= link_to 'Back', episodes_path %>
+<%= link_to 'Liste des épisodes', episodes_path, class: 'btn btn-primary' %>

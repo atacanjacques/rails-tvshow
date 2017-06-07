@@ -1,19 +1,11 @@
-<p id="notice"><%= notice %></p>
+<h1>Afficher une série</h1>
+
+<p>Nom : <%= @tv_show.nom %></p>
+<p>Statut : <%= @tv_show.statut == 0 ? "Terminé" : (@tv_show.statut == 1 ? "Actif" : "Annulé") %></p>
+<p>Durée : <%= @tv_show.duree %></p>
+<p>Chaine : <%= @tv_show.channel_id %></p>
 
 <p>
-  <strong>Nom:</strong>
-  <%= @tv_show.nom %>
+	<%= link_to 'Liste des séries', tv_shows_path, class: 'btn btn-primary' %>
+	<%= link_to 'Modifier la série', edit_tv_show_path, class: 'btn btn-primary' %>
 </p>
-
-<p>
-  <strong>Statut:</strong>
-  <%= @tv_show.statut %>
-</p>
-
-<p>
-  <strong>Duree:</strong>
-  <%= @tv_show.duree %>
-</p>
-
-<%= link_to 'Edit', edit_tv_show_path(@tv_show) %> |
-<%= link_to 'Back', tv_shows_path %>

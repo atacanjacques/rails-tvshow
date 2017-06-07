@@ -1,9 +1,8 @@
-<p id="notice"><%= notice %></p>
+<h1>Afficher une chaine</h1>
+
+<p>Nom : <%= @channel.nom %></p>
 
 <p>
-  <strong>Nom:</strong>
-  <%= @channel.nom %>
+	<%= link_to 'Liste des chaines', channels_path, class: 'btn btn-primary' %>
+	<%= link_to 'Modifier la chaine', edit_channel_path, class: 'btn btn-primary' %>
 </p>
-
-<%= link_to 'Edit', edit_channel_path(@channel) %> |
-<%= link_to 'Back', channels_path %>

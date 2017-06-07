@@ -1,37 +1,33 @@
-<%= form_for(episode) do |f| %>
-  <% if episode.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(episode.errors.count, "error") %> prohibited this episode from being saved:</h2>
-
-      <ul>
-      <% episode.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :saison %>
-    <%= f.number_field :saison %>
+<%= simple_form_for @episode do |f| %>
+<div class="row">
+  <div class="form-group col-lg-5">
+    <p>
+      <%= f.input :saison, label: 'Saison', class: 'form-control' %>
+    </p>
   </div>
-
-  <div class="field">
-    <%= f.label :episode %>
-    <%= f.number_field :episode %>
+</div>
+<div class="row">
+  <div class="form-group col-lg-5">
+    <p>
+      <%= f.input :episode, label: 'Episode', class: 'form-control' %>
+    </p>
   </div>
-
-  <div class="field">
-    <%= f.label :titre %>
-    <%= f.text_field :titre %>
+</div>
+<div class="row">
+  <div class="form-group col-lg-5">
+    <p>
+      <%= f.input :titre, label: 'Titre', class: 'form-control' %>
+    </p>
   </div>
-
-  <div class="field">
-    <%= f.label :TvShow_id %>
-    <%= f.text_field :TvShow_id %>
+</div>
+<div class="row">
+  <div class="form-group col-lg-5">
+    <p>
+      <%= f.input :TvShow_id, label: 'Série', class: 'form-control' %>
+    </p>
   </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+</div>
+<p>
+  <%= f.submit submit , class: 'btn btn-primary' %>
+</p>
 <% end %>

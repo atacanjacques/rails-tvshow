@@ -1,27 +1,35 @@
-<p id="notice"><%= notice %></p>
+<h1>Liste des chaines</h1>
 
-<h1>Channels</h1>
+<% if @channels.any? %>
 
-<table>
+<%= will_paginate @channels, renderer: BootstrapPagination::Rails %>
+
+<table class="table">
   <thead>
     <tr>
-      <th>Nom</th>
-      <th colspan="3"></th>
+      <td>ID</td>
+      <td>Nom</td>
     </tr>
   </thead>
-
   <tbody>
     <% @channels.each do |channel| %>
-      <tr>
-        <td><%= channel.nom %></td>
-        <td><%= link_to 'Show', channel %></td>
-        <td><%= link_to 'Edit', edit_channel_path(channel) %></td>
-        <td><%= link_to 'Destroy', channel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <tr>
+      <td><%= channel.id %></td>
+      <td><%= channel.nom %></td>
+      <td><%= link_to 'Afficher', channel, class: 'btn btn-primary' %></td>
+      <td><%= link_to 'Modifier', edit_channel_path(channel), class: 'btn btn-warning' %></td>
+      <td><%= link_to 'Supprimer', channel,
+      method: :delete,
+      data: {confirm: 'Etes-vous sûr de vouloir supprimer la chaine ?'},
+      class: 'btn btn-danger' %></td>
+    </tr>
     <% end %>
   </tbody>
 </table>
+<% else %>
+<p>Il n'y a pas encore de chaines.</p>
+<% end %>
 
-<br>
-
-<%= link_to 'New Channel', new_channel_path %>
+<p>
+  <%= link_to 'Ajouter une chaine', new_channel_path, class: 'btn btn-success' %>
+</p>

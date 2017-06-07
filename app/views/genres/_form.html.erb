@@ -1,9 +1,8 @@
-<%= form_for @genre do |f| %>
+<%= simple_form_for @genre do |f| %>
 <div class="row">
   <div class="form-group col-lg-5">
     <p>
-      <%= f.label :nom, 'Nom' %>
-      <%= f.text_field :nom, class: 'form-control' %>
+      <%= f.input :nom, label: 'Nom', class: 'form-control' %>
     </p>
   </div>
 </div>

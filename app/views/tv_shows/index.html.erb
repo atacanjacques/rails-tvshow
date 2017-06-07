@@ -1,33 +1,40 @@
-<p id="notice"><%= notice %></p>
+<h1>Liste des séries</h1>
 
-<h1>Tv Shows</h1>
+<% if @tv_shows.any? %>
 
-<table>
+<%= will_paginate @tv_shows, renderer: BootstrapPagination::Rails %>
+
+<table class="table">
   <thead>
     <tr>
-      <th>Nom</th>
-      <th>Statut</th>
-      <th>Duree</th>
-      <th>Channel</th>
-      <th colspan="3"></th>
+      <td>Nom</td>
+      <td>Statut</td>
+      <td>Durée</td>
+      <td>Chaine</td>
     </tr>
   </thead>
-
   <tbody>
     <% @tv_shows.each do |tv_show| %>
-      <tr>
-        <td><%= tv_show.nom %></td>
-        <td><%= tv_show.statut %></td>
-        <td><%= tv_show.duree %></td>
-        <td><%= tv_show.channel_id %></td>
-        <td><%= link_to 'Show', tv_show %></td>
-        <td><%= link_to 'Edit', edit_tv_show_path(tv_show) %></td>
-        <td><%= link_to 'Destroy', tv_show, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <tr>
+      <td><%= tv_show.nom %></td>
+      <td><%= tv_show.statut == 0 ? "Terminé" : (tv_show.statut == 1 ? "Actif" : "Annulé") %></td>
+      <td><%= tv_show.duree %></td>
+      <td><%= tv_show.channel_id %></td>
+          <!-- tv_show.channel -->
+      <td><%= link_to 'Afficher', tv_show, class: 'btn btn-primary' %></td>
+      <td><%= link_to 'Modifier', edit_tv_show_path(tv_show), class: 'btn btn-warning' %></td>
+      <td><%= link_to 'Supprimer', tv_show,
+      method: :delete,
+      data: {confirm: 'Etes-vous sûr de vouloir supprimer la série ?'},
+      class: 'btn btn-danger' %></td>
+    </tr>
     <% end %>
   </tbody>
 </table>
+<% else %>
+<p>Il n'y a pas encore de séries.</p>
+<% end %>
 
-<br>
-
-<%= link_to 'New Tv Show', new_tv_show_path %>
+<p>
+  <%= link_to 'Ajouter une série', new_tv_show_path, class: 'btn btn-success' %>
+</p>

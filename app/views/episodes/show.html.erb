@@ -1,24 +1,11 @@
-<p id="notice"><%= notice %></p>
+<h1>Afficher une série</h1>
+
+<p>Saison : <%= @episode.saison %></p>
+<p>Episode : <%= @episode.episode %></p>
+<p>Titre : <%= @episode.titre %></p>
+<p>Série : <%= @episode.TvShow %></p>
 
 <p>
-  <strong>Saison:</strong>
-  <%= @episode.saison %>
+	<%= link_to 'Liste des épisodes', episodes_path, class: 'btn btn-primary' %>
+	<%= link_to 'Modifier l\'épisode', edit_episode_path, class: 'btn btn-primary' %>
 </p>
-
-<p>
-  <strong>Episode:</strong>
-  <%= @episode.episode %>
-</p>
-
-<p>
-  <strong>Titre:</strong>
-  <%= @episode.titre %>
-</p>
-
-<p>
-  <strong>Tvshow:</strong>
-  <%= @episode.TvShow %>
-</p>
-
-<%= link_to 'Edit', edit_episode_path(@episode) %> |
-<%= link_to 'Back', episodes_path %>

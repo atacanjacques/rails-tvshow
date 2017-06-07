@@ -1,5 +1,5 @@
-<h1>New Channel</h1>
+<h1>Ajout d'une chaine</h1>
 
-<%= render 'form', channel: @channel %>
+<%= render partial: 'form', locals: {submit: 'Ajouter'} %>
 
-<%= link_to 'Back', channels_path %>
+<%= link_to 'Liste des chaines', channels_path, class: 'btn btn-primary' %>

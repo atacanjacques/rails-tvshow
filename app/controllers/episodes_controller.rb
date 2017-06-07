@@ -2,7 +2,8 @@ class EpisodesController < ApplicationController
   before_action :set_episode, only: [:show, :edit, :update, :destroy]
 
   def index
-    @episodes = Episode.all
+    # @episodes = Episode.all
+    @episodes = Episode.paginate(page: params[:page], per_page: 5)
   end
 
   def show

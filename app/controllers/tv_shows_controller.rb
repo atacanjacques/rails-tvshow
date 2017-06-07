@@ -2,7 +2,8 @@ class TvShowsController < ApplicationController
   before_action :set_tv_show, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tv_shows = TvShow.all
+    # @tv_shows = TvShow.all
+    @tv_shows = TvShow.paginate(page: params[:page], per_page: 5)
   end
 
   def show
@@ -45,11 +46,11 @@ class TvShowsController < ApplicationController
   end
 
   private
-    def set_tv_show
-      @tv_show = TvShow.find(params[:id])
-    end
+  def set_tv_show
+    @tv_show = TvShow.find(params[:id])
+  end
 
-    def tv_show_params
-      params.require(:tv_show).permit(:nom, :statut, :duree, :channel_id)
-    end
+  def tv_show_params
+    params.require(:tv_show).permit(:nom, :statut, :duree, :channel_id)
+  end
 end

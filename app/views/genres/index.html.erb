@@ -1,6 +1,9 @@
 <h1>Liste des Genres</h1>
 
 <% if @genres.any? %>
+
+<%= will_paginate @genres, renderer: BootstrapPagination::Rails %>
+
 <table class="table">
   <thead>
     <tr>

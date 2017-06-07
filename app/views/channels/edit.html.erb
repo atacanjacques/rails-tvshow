@@ -1,6 +1,5 @@
-<h1>Editing Channel</h1>
+<h1>Édition d'une chaine</h1>
 
-<%= render 'form', channel: @channel %>
+<%= render partial: 'form', locals: {submit: 'Modifier'} %>
 
-<%= link_to 'Show', @channel %> |
-<%= link_to 'Back', channels_path %>
+<%= link_to 'Liste des chaines', channels_path, class: 'btn btn-primary' %>
