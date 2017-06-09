@@ -1,9 +1,9 @@
 <h1>Afficher une série</h1>
 
 <p>Nom : <%= @tv_show.nom %></p>
-<p>Statut : <%= @tv_show.statut == 0 ? "Terminé" : (@tv_show.statut == 1 ? "Actif" : "Annulé") %></p>
-<p>Durée : <%= @tv_show.duree %></p>
-<p>Chaine : <%= @tv_show.channel_id %></p>
+<p>Statut : <%= @tv_show.statut ? tv_show_statut_label(@tv_show.statut) : '&empty;'.html_safe %></p>
+<p>Durée : <%= @tv_show.duree > 1 ? (@tv_show.duree).to_s + ' minutes' : (@tv_show.duree).to_s + ' minute' %></p>
+<p>Chaine : <%= @tv_show.channel.nom %></p>
 
 <p>
 	<%= link_to 'Liste des séries', tv_shows_path, class: 'btn btn-primary' %>
