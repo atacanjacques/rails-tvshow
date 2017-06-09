@@ -3,7 +3,7 @@
 <p>Saison : <%= @episode.saison %></p>
 <p>Episode : <%= @episode.episode %></p>
 <p>Titre : <%= @episode.titre %></p>
-<p>Série : <%= @episode.TvShow %></p>
+<p>Série : <%= @episode.TvShow.nom %></p>
 
 <p>
 	<%= link_to 'Liste des épisodes', episodes_path, class: 'btn btn-primary' %>
