@@ -11,6 +11,7 @@
       <td>Statut</td>
       <td>Durée</td>
       <td>Chaine</td>
+      <td>Genre</td>
     </tr>
   </thead>
   <tbody>
@@ -20,6 +21,7 @@
       <td><%= tv_show.statut ? tv_show_statut_label(tv_show.statut) : '&empty;'.html_safe %></td>
       <td><%= tv_show.duree > 1 ? (tv_show.duree).to_s + ' minutes' : (tv_show.duree).to_s + ' minute' %></td>
       <td><%= tv_show.channel.nom %></td>
+      <td><%= render partial: 'genres_list', locals: { genres: tv_show.genres } %></td>
       <td><%= link_to 'Afficher', tv_show, class: 'btn btn-primary' %></td>
       <td><%= link_to 'Modifier', edit_tv_show_path(tv_show), class: 'btn btn-warning' %></td>
       <td><%= link_to 'Supprimer', tv_show,

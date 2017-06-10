@@ -4,6 +4,7 @@
 <p>Statut : <%= @tv_show.statut ? tv_show_statut_label(@tv_show.statut) : '&empty;'.html_safe %></p>
 <p>Durée : <%= @tv_show.duree > 1 ? (@tv_show.duree).to_s + ' minutes' : (@tv_show.duree).to_s + ' minute' %></p>
 <p>Chaine : <%= @tv_show.channel.nom %></p>
+<p>Genres : <%= render partial: 'genres_list', locals: { genres: @tv_show.genres } %></p>
 
 <p>
 	<%= link_to 'Liste des séries', tv_shows_path, class: 'btn btn-primary' %>

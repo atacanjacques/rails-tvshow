@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170607090335) do
+ActiveRecord::Schema.define(version: 20170610095748) do
 
   create_table "channels", force: :cascade do |t|
     t.string   "nom"
@@ -32,6 +32,15 @@ ActiveRecord::Schema.define(version: 20170607090335) do
     t.string   "nom"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "tv_show_genres", force: :cascade do |t|
+    t.integer  "tv_show_id"
+    t.integer  "genre_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["genre_id"], name: "index_tv_show_genres_on_genre_id"
+    t.index ["tv_show_id"], name: "index_tv_show_genres_on_tv_show_id"
   end
 
   create_table "tv_shows", force: :cascade do |t|
