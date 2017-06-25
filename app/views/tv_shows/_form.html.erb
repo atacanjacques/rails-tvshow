@@ -2,21 +2,21 @@
 <div class="row">
   <div class="form-group col-lg-5">
     <p>
-      <%= f.input :nom, label: 'Nom', class: 'form-control' %>
+      <%= f.input :name, label: 'Nom', class: 'form-control' %>
     </p>
   </div>
 </div>
 <div class="row">
   <div class="form-group col-lg-5">
     <p>
-      <%= f.input :statut,  :collection => [['Terminé',0],['En cours',1],['Annulé',2]], class: 'form-control' %>
+      <%= f.input :status,  :collection => [['Terminé',0],['En cours',1],['Annulé',2]], class: 'form-control' %>
     </p>
   </div>
 </div>
 <div class="row">
   <div class="form-group col-lg-5">
     <p>
-      <%= f.input :duree, label: 'Durée', class: 'form-control' %>
+      <%= f.input :time, label: 'Durée', class: 'form-control' %>
     </p>
   </div>
 </div>

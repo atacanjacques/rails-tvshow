@@ -1,9 +1,9 @@
 <h1>Afficher une série</h1>
 
-<p>Nom : <%= @tv_show.nom %></p>
-<p>Statut : <%= @tv_show.statut ? tv_show_statut_label(@tv_show.statut) : '&empty;'.html_safe %></p>
-<p>Durée : <%= @tv_show.duree > 1 ? (@tv_show.duree).to_s + ' minutes' : (@tv_show.duree).to_s + ' minute' %></p>
-<p>Chaine : <%= @tv_show.channel.nom %></p>
+<p>Nom : <%= @tv_show.time %></p>
+<p>Statut : <%= @tv_show.status ? tv_show_status_label(@tv_show.status) : '&empty;'.html_safe %></p>
+<p>Durée : <%= @tv_show.time > 1 ? (@tv_show.time).to_s + ' minutes' : (@tv_show.time).to_s + ' minute' %></p>
+<p>Chaine : <%= @tv_show.channel.name %></p>
 <p>Genres : <%= render partial: 'genres_list', locals: { genres: @tv_show.genres } %></p>
 
 <p>

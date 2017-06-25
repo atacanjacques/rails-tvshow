@@ -10,18 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170610095748) do
+ActiveRecord::Schema.define(version: 20170625135500) do
 
   create_table "channels", force: :cascade do |t|
-    t.string   "nom"
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "episodes", force: :cascade do |t|
-    t.integer  "saison"
+    t.integer  "season"
     t.integer  "episode"
-    t.string   "titre"
+    t.string   "title"
     t.integer  "TvShow_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20170610095748) do
   end
 
   create_table "genres", force: :cascade do |t|
-    t.string   "nom"
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -44,9 +44,9 @@ ActiveRecord::Schema.define(version: 20170610095748) do
   end
 
   create_table "tv_shows", force: :cascade do |t|
-    t.string   "nom"
-    t.integer  "statut"
-    t.integer  "duree"
+    t.string   "name"
+    t.integer  "status"
+    t.integer  "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "channel_id"

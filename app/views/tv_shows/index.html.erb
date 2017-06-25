@@ -17,10 +17,10 @@
   <tbody>
     <% @tv_shows.each do |tv_show| %>
     <tr>
-      <td><%= tv_show.nom %></td>
-      <td><%= tv_show.statut ? tv_show_statut_label(tv_show.statut) : '&empty;'.html_safe %></td>
-      <td><%= tv_show.duree > 1 ? (tv_show.duree).to_s + ' minutes' : (tv_show.duree).to_s + ' minute' %></td>
-      <td><%= tv_show.channel.nom %></td>
+      <td><%= tv_show.name %></td>
+      <td><%= tv_show.status ? tv_show_status_label(tv_show.status) : '&empty;'.html_safe %></td>
+      <td><%= tv_show.time > 1 ? (tv_show.time).to_s + ' minutes' : (tv_show.time).to_s + ' minute' %></td>
+      <td><%= tv_show.channel.name %></td>
       <td><%= render partial: 'genres_list', locals: { genres: tv_show.genres } %></td>
       <td><%= link_to 'Afficher', tv_show, class: 'btn btn-primary' %></td>
       <td><%= link_to 'Modifier', edit_tv_show_path(tv_show), class: 'btn btn-warning' %></td>

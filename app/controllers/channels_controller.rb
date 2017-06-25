@@ -51,6 +51,6 @@ class ChannelsController < ApplicationController
     end
 
     def channel_params
-      params.require(:channel).permit(:nom)
+      params.require(:channel).permit(:name)
     end
 end

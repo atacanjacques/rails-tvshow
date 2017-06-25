@@ -1,10 +1,10 @@
 module TvShowsHelper
-	def tv_show_statut_label(statut)
-		if statut == 0
+	def tv_show_status_label(status)
+		if status == 0
 			raw '<span class="label label-danger">Terminé</span>'
-		elsif statut == 1
+		elsif status == 1
 			raw '<span class="label label-success">En cours</span>'
-		elsif statut == 2
+		elsif status == 2
 			raw '<span class="label label-warning">Annulé</span>'
 		end
 	end

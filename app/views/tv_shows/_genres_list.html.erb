@@ -1,5 +1,5 @@
 <% if genres.any?%>
-<%= raw genres.map { |element| link_to(element.nom, element) }
+<%= raw genres.map { |element| link_to(element.name, element) }
 .join(', ')
 %>
 <% else %>

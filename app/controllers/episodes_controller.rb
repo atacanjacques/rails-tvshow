@@ -51,6 +51,6 @@ class EpisodesController < ApplicationController
     end
 
     def episode_params
-      params.require(:episode).permit(:saison, :episode, :titre, :TvShow_id)
+      params.require(:episode).permit(:season, :episode, :title, :TvShow_id)
     end
 end

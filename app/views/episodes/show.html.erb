@@ -1,9 +1,9 @@
 <h1>Afficher une série</h1>
 
-<p>Saison : <%= @episode.saison %></p>
+<p>Saison : <%= @episode.season %></p>
 <p>Episode : <%= @episode.episode %></p>
-<p>Titre : <%= @episode.titre %></p>
-<p>Série : <%= @episode.TvShow.nom %></p>
+<p>Titre : <%= @episode.title %></p>
+<p>Série : <%= @episode.TvShow.name %></p>
 
 <p>
 	<%= link_to 'Liste des épisodes', episodes_path, class: 'btn btn-primary' %>

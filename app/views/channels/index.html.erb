@@ -15,7 +15,7 @@
     <% @channels.each do |channel| %>
     <tr>
       <td><%= channel.id %></td>
-      <td><%= channel.nom %></td>
+      <td><%= channel.name %></td>
       <td><%= link_to 'Afficher', channel, class: 'btn btn-primary' %></td>
       <td><%= link_to 'Modifier', edit_channel_path(channel), class: 'btn btn-warning' %></td>
       <td><%= link_to 'Supprimer', channel,
