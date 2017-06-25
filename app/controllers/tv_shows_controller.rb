@@ -1,5 +1,6 @@
 class TvShowsController < ApplicationController
   before_action :set_tv_show, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   def index
     # @tv_shows = TvShow.all

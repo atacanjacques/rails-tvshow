@@ -31,6 +31,21 @@
 						</ul>
 					</li>
 				</ul>
+				<ul class="nav navbar-nav navbar-right">
+				<% if user_signed_in? %>
+					<li>
+						<%= link_to destroy_user_session_path, method: :delete do %>
+						<span class="glyphicon glyphicon-log-out"></span> Se déconnecter
+						<% end %>
+					</li>
+					<% else %>
+					<li>
+						<%= link_to new_user_session_path do %>
+						<span class="glyphicon glyphicon-log-in"></span> Se connecter
+						<% end %>
+					</li>
+				<% end %>
+				</ul>
 			</div>
 		</div>
 	</nav>

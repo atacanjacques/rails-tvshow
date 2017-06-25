@@ -1,5 +1,6 @@
 class GenresController < ApplicationController
   before_action :set_genre, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   def index
     # @genres = Genre.all
