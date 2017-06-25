@@ -7,6 +7,7 @@ class TvShowsController < ApplicationController
   end
 
   def show
+    @episodes = Episode.where(TvShow_id: params[:id]).paginate(page: params[:page], per_page: 5)
   end
 
   def new
