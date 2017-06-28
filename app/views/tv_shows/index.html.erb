@@ -22,20 +22,33 @@
       <td><%= tv_show.time > 1 ? (tv_show.time).to_s + ' minutes' : (tv_show.time).to_s + ' minute' %></td>
       <td><%= tv_show.channel.name %></td>
       <td><%= render partial: 'genres_list', locals: { genres: tv_show.genres } %></td>
+      <td>
+        <% if current_user.tv_shows.include? tv_show %>
+        <%= link_to 'Retirer de mes séries', remove_user_tv_show_tv_show_path(tv_show),
+          method: "get",
+          data: {confirm: 'Etes-vous sûr de vouloir retirer la série de votre compte ?'},
+          class: 'btn btn-danger' %>
+        <% else %>
+          <%= link_to 'Ajouter à mes séries', add_user_tv_show_tv_show_path(tv_show),
+          method: "get",
+          data: {confirm: 'Etes-vous sûr de vouloir ajouter la série à votre compte ?'},
+          class: 'btn btn-success' %>
+        <% end %>
+      </td>
       <td><%= link_to 'Afficher', tv_show, class: 'btn btn-primary' %></td>
       <td><%= link_to 'Modifier', edit_tv_show_path(tv_show), class: 'btn btn-warning' %></td>
-      <td><%= link_to 'Supprimer', tv_show,
-      method: :delete,
-      data: {confirm: 'Etes-vous sûr de vouloir supprimer la série ?'},
-      class: 'btn btn-danger' %></td>
-    </tr>
+        <td><%= link_to 'Supprimer', tv_show,
+          method: :delete,
+          data: {confirm: 'Etes-vous sûr de vouloir supprimer la série ?'},
+          class: 'btn btn-danger' %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <% else %>
+    <p>Il n'y a pas encore de séries.</p>
     <% end %>
-  </tbody>
-</table>
-<% else %>
-<p>Il n'y a pas encore de séries.</p>
-<% end %>
 
-<p>
-  <%= link_to 'Ajouter une série', new_tv_show_path, class: 'btn btn-success' %>
-</p>
+    <p>
+      <%= link_to 'Ajouter une série', new_tv_show_path, class: 'btn btn-success' %>
+    </p>

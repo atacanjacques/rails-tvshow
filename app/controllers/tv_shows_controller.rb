@@ -1,5 +1,5 @@
 class TvShowsController < ApplicationController
-  before_action :set_tv_show, only: [:show, :edit, :update, :destroy]
+  before_action :set_tv_show, only: [:show, :edit, :update, :destroy, :add_user_tv_show, :remove_user_tv_show]
   before_action :authenticate_user!
 
   def index
@@ -8,7 +8,7 @@ class TvShowsController < ApplicationController
   end
 
   def show
-    @episodes = Episode.where(TvShow_id: params[:id]).paginate(page: params[:page], per_page: 5)
+    @episodes = Episode.where(tv_show_id: params[:id]).paginate(page: params[:page], per_page: 5)
   end
 
   def new
@@ -44,6 +44,22 @@ class TvShowsController < ApplicationController
     @tv_show.destroy
     respond_to do |format|
       format.html { redirect_to tv_shows_url, notice: 'La série a été supprimer avec succès.' }
+    end
+  end
+
+  def add_user_tv_show
+    UserTvShow.create!({:user => current_user, :tv_show => @tv_show })
+    respond_to do |format|
+      format.html { redirect_to tv_shows_url, notice: 'La série a été ajoutée à votre compte avec succès.' }
+    end
+  end
+
+  def remove_user_tv_show
+    user_tv_show = UserTvShow.where({:user => current_user, :tv_show => @tv_show }).first
+    user_tv_show.destroy
+
+    respond_to do |format|
+      format.html { redirect_to tv_shows_url, notice: 'La série a été retirée de votre compte avec succès.' }
     end
   end
 

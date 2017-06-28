@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170625170832) do
+ActiveRecord::Schema.define(version: 20170628122238) do
 
   create_table "channels", force: :cascade do |t|
     t.string   "name"
@@ -22,10 +22,10 @@ ActiveRecord::Schema.define(version: 20170625170832) do
     t.integer  "season"
     t.integer  "episode"
     t.string   "title"
-    t.integer  "TvShow_id"
+    t.integer  "tv_show_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["TvShow_id"], name: "index_episodes_on_TvShow_id"
+    t.index ["tv_show_id"], name: "index_episodes_on_tv_show_id"
   end
 
   create_table "genres", force: :cascade do |t|
@@ -51,6 +51,15 @@ ActiveRecord::Schema.define(version: 20170625170832) do
     t.datetime "updated_at", null: false
     t.integer  "channel_id"
     t.index ["channel_id"], name: "index_tv_shows_on_channel_id"
+  end
+
+  create_table "user_tv_shows", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "tv_show_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tv_show_id"], name: "index_user_tv_shows_on_tv_show_id"
+    t.index ["user_id"], name: "index_user_tv_shows_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

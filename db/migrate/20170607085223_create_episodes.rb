@@ -4,7 +4,7 @@ class CreateEpisodes < ActiveRecord::Migration[5.0]
       t.integer :saison
       t.integer :episode
       t.string :titre
-      t.belongs_to :TvShow, foreign_key: true
+      t.belongs_to :tv_show, foreign_key: true
 
       t.timestamps
     end
