@@ -1,6 +1,6 @@
 <h1>Afficher une série</h1>
 
-<p>Nom : <%= @tv_show.time %></p>
+<p>Nom : <%= @tv_show.name %></p>
 <p>Statut : <%= @tv_show.status ? tv_show_status_label(@tv_show.status) : '&empty;'.html_safe %></p>
 <p>Durée : <%= @tv_show.time > 1 ? (@tv_show.time).to_s + ' minutes' : (@tv_show.time).to_s + ' minute' %></p>
 <p>Chaine : <%= @tv_show.channel.name %></p>
@@ -36,6 +36,7 @@
 		      <td><%= episode.episode %></td>
 		      <td><%= episode.title %></td>
 		      <td><%= episode.TvShow.name %></td>
+		      <td><%= link_to 'Ajouter à mes séries', episode, class: 'btn btn-success' %></td>
 		      <td><%= link_to 'Afficher', episode, class: 'btn btn-primary' %></td>
 		      <td><%= link_to 'Modifier', edit_episode_path(episode), class: 'btn btn-warning' %></td>
 		      <td><%= link_to 'Supprimer', episode,
