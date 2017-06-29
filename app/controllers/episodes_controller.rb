@@ -1,6 +1,5 @@
 class EpisodesController < ApplicationController
-  before_action :set_episode, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :set_episode, only: [:show, :edit, :update, :destroy, :add_user_episode,:remove_user_episode]
 
   def index
     # @episodes = Episode.all
@@ -46,12 +45,35 @@ class EpisodesController < ApplicationController
     end
   end
 
-  private
-    def set_episode
-      @episode = Episode.find(params[:id])
-    end
+  def my_episodes
+    @my_episodes = UserEpisode.where(user_id: current_user)
+    .paginate(page: params[:page], per_page: 5)
 
-    def episode_params
-      params.require(:episode).permit(:season, :episode, :title, :TvShow_id)
+    @episodes = Episode.all
+  end
+
+  def add_user_episode
+    UserEpisode.create!({:user => current_user, :episode => @episode })
+    respond_to do |format|
+      format.html { redirect_to episodes_url, notice: 'La série a été ajoutée à votre compte avec succès.' }
     end
+  end
+
+  def remove_user_episode
+    user_episode = UserEpisode.where({:user => current_user, :episode => @episode }).first
+    user_episode.destroy
+
+    respond_to do |format|
+      format.html { redirect_to episodes_url, notice: 'La série a été retirée de votre compte avec succès.' }
+    end
+  end
+
+  private
+  def set_episode
+    @episode = Episode.find(params[:id])
+  end
+
+  def episode_params
+    params.require(:episode).permit(:season, :episode, :title, :TvShow_id)
+  end
 end
