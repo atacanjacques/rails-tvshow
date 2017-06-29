@@ -1,3 +1,3 @@
 class Episode < ApplicationRecord
-  belongs_to :TvShow
+  belongs_to :tv_show
 end

@@ -25,14 +25,15 @@
 						<ul class="dropdown-menu">
 							<li><a href="<%= tv_shows_path %>">Séries</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="<%= channels_path %>">Chaine</a></li>
 							<li><a href="<%= episodes_path %>">Episodes</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="<%= channels_path %>">Chaine</a></li>
 							<li><a href="<%= genres_path %>">Genres <i></i></a></li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-				<% if user_signed_in? %>
+					<% if user_signed_in? %>
 					<li>
 						<%= link_to destroy_user_session_path, method: :delete do %>
 						<span class="glyphicon glyphicon-log-out"></span> Se déconnecter
@@ -44,7 +45,7 @@
 						<span class="glyphicon glyphicon-log-in"></span> Se connecter
 						<% end %>
 					</li>
-				<% end %>
+					<% end %>
 				</ul>
 			</div>
 		</div>
