@@ -1,0 +1,50 @@
+<h1>Liste des séries</h1>
+
+<% if @my_tv_shows.any? %>
+
+<%= will_paginate @my_tv_shows, renderer: BootstrapPagination::Rails %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <td>Nom</td>
+      <td>Statut</td>
+      <td>Durée</td>
+      <td>Chaine</td>
+      <td>Genre</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @my_tv_shows.each do |my_tv_show| %>
+    <% the_tv_show = @tv_shows.where(id: my_tv_show.tv_show_id).first %>
+    <tr>
+      <td><%= the_tv_show.name %></td>
+      <td><%= the_tv_show.status ? tv_show_status_label(the_tv_show.status) : '&empty;'.html_safe %></td>
+      <td><%= the_tv_show.time > 1 ? (the_tv_show.time).to_s + ' minutes' : (the_tv_show.time).to_s + ' minute' %></td>
+      <td><%= the_tv_show.channel.name %></td>
+      <td><%= render partial: 'genres_list', locals: { genres: the_tv_show.genres } %></td>
+      <td>
+        <% if current_user.tv_shows.include? the_tv_show %>
+        <%= link_to 'Retirer de mes séries', remove_user_tv_show_tv_show_path(the_tv_show),
+        method: "get",
+        data: {confirm: 'Etes-vous sûr de vouloir retirer la série de votre compte ?'},
+        class: 'btn btn-danger' %>
+        <% else %>
+        <%= link_to 'Ajouter à mes séries', add_user_tv_show_tv_show_path(the_tv_show),
+        method: "get",
+        data: {confirm: 'Etes-vous sûr de vouloir ajouter la série à votre compte ?'},
+        class: 'btn btn-success' %>
+        <% end %>
+      </td>
+      <td><%= link_to 'Afficher', the_tv_show, class: 'btn btn-primary' %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% else %>
+  <p>Il n'y a pas encore de séries.</p>
+  <% end %>
+
+  <p>
+    <%= link_to 'Ajouter une série', new_tv_show_path, class: 'btn btn-success' %>
+  </p>

@@ -47,6 +47,13 @@ class TvShowsController < ApplicationController
     end
   end
 
+  def my_tv_shows
+    @my_tv_shows = UserTvShow.where(user_id: current_user)
+    .paginate(page: params[:page], per_page: 5)
+
+    @tv_shows = TvShow.all
+  end
+
   def add_user_tv_show
     UserTvShow.create!({:user => current_user, :tv_show => @tv_show })
     respond_to do |format|
