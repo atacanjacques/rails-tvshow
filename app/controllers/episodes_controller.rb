@@ -48,8 +48,7 @@ class EpisodesController < ApplicationController
   end
 
   def remove_user_episode
-    user_episode = UserEpisode.where({:user => current_user, :episode => @episode }).first
-    user_episode.destroy
+    UserEpisode.destroy_all(user: current_user, episode: @episode)
     redirect_back(fallback_location: episodes_url)
   end
 

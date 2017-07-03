@@ -52,8 +52,7 @@ class TvShowsController < ApplicationController
   end
 
   def remove_user_tv_show
-    user_tv_show = UserTvShow.where({:user => current_user, :tv_show => @tv_show }).first
-    user_tv_show.destroy
+    UserTvShow.destroy_all(user: current_user, tv_show: @tv_show)
     redirect_back(fallback_location: tv_shows_url)
   end
 
