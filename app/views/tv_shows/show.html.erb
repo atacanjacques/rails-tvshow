@@ -1,53 +1,60 @@
 <h1>Afficher une série</h1>
-
 <p>Nom : <%= @tv_show.name %></p>
 <p>Statut : <%= @tv_show.status ? tv_show_status_label(@tv_show.status) : '&empty;'.html_safe %></p>
 <p>Durée : <%= @tv_show.time > 1 ? (@tv_show.time).to_s + ' minutes' : (@tv_show.time).to_s + ' minute' %></p>
 <p>Chaine : <%= @tv_show.channel.name %></p>
 <p>Genres : <%= render partial: 'genres_list', locals: { genres: @tv_show.genres } %></p>
-
 <p>
-	<%= link_to 'Liste des séries', tv_shows_path, class: 'btn btn-primary' %>
-	<%= link_to 'Modifier la série', edit_tv_show_path, class: 'btn btn-primary' %>
+  <%= link_to 'Liste des séries', tv_shows_path, class: 'btn btn-primary' %>
+  <%= link_to 'Modifier la série', edit_tv_show_path, class: 'btn btn-primary' %>
 </p>
-
 <hr>
-
 <div class="panel panel-primary">
-	<div class="panel-heading">Liste des épisodes</div>
-	<div class="panel-body">
-		<% if @episodes.any? %>
-
-		<%= will_paginate @episodes, renderer: BootstrapPagination::Rails %>
-
-		<table class="table">
-		  <thead>
-		    <tr>
-		      <td>Saison</td>
-		      <td>Episode</td>
-		      <td>Titre</td>
-		      <td>Série</td>
-		    </tr>
-		  </thead>
-		  <tbody>
-		    <% @episodes.each do |episode| %>
-		    <tr>
-		      <td><%= episode.season %></td>
-		      <td><%= episode.episode %></td>
-		      <td><%= episode.title %></td>
-		      <td><%= episode.tv_show.name %></td>
-		      <td><%= link_to 'Afficher', episode, class: 'btn btn-primary' %></td>
-		      <td><%= link_to 'Modifier', edit_episode_path(episode), class: 'btn btn-warning' %></td>
-		      <td><%= link_to 'Supprimer', episode,
+  <div class="panel-heading">Liste des épisodes</div>
+  <div class="panel-body">
+    <% if @episodes.any? %>
+      <%= will_paginate @episodes, renderer: BootstrapPagination::Rails %>
+      <table class="table">
+        <thead>
+          <tr>
+            <td>Saison</td>
+            <td>Episode</td>
+            <td>Titre</td>
+            <td>Série</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @episodes.each do |episode| %>
+            <tr>
+              <td><%= episode.season %></td>
+              <td><%= episode.episode %></td>
+              <td><%= episode.title %></td>
+              <td><%= episode.tv_show.name %></td>
+              <td>
+                <% if current_user.episodes.include? episode %>
+                  <%= link_to 'Non vue', remove_user_episode_episode_path(episode),
+        method: "get",
+        data: {confirm: 'Etes-vous sûr de vouloir retirer l\'épisode de votre compte ?'},
+        class: 'btn btn-danger' %>
+                <% else %>
+                  <%= link_to 'Vue', add_user_episode_episode_path(episode),
+        method: "get",
+        data: {confirm: 'Etes-vous sûr de vouloir ajouter l\'épisode à votre compte ?'},
+        class: 'btn btn-success' %>
+                <% end %>
+              </td>
+              <td><%= link_to 'Afficher', episode, class: 'btn btn-primary' %></td>
+              <td><%= link_to 'Modifier', edit_episode_path(episode), class: 'btn btn-warning' %></td>
+              <td><%= link_to 'Supprimer', episode,
 		      method: :delete,
 		      data: {confirm: 'Etes-vous sûr de vouloir supprimer l\'épisode ?'},
 		      class: 'btn btn-danger' %></td>
-		    </tr>
-		    <% end %>
-		  </tbody>
-		</table>
-		<% else %>
-		<p>Il n'y a pas encore d'épisodes.</p>
-		<% end %>
-	</div>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p>Il n'y a pas encore d'épisodes.</p>
+    <% end %>
+  </div>
 </div>

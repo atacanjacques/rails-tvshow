@@ -38,20 +38,19 @@ class EpisodesController < ApplicationController
     redirect_to episodes_url
   end
 
-  def my_episodes
-    @my_episodes = UserEpisode.where(user_id: current_user).paginate(page: params[:page], per_page: 5)
-    @episodes = Episode.all
-  end
-
   def add_user_episode
+    tv_show = @episode.tv_show
+    if !current_user.tv_shows.include? tv_show
+      UserTvShow.create!({:user => current_user, :tv_show => tv_show })
+    end
     UserEpisode.create!({:user => current_user, :episode => @episode })
-    redirect_to episodes_url
+    redirect_back(fallback_location: episodes_url)
   end
 
   def remove_user_episode
     user_episode = UserEpisode.where({:user => current_user, :episode => @episode }).first
     user_episode.destroy
-    redirect_to episodes_url
+    redirect_back(fallback_location: episodes_url)
   end
 
   private
