@@ -19,6 +19,7 @@ class GenresController < ApplicationController
     @genre = Genre.new(genre_params)
 
     if @genre.save
+      flash[:success] = "Le genre a été ajoutée avec succès."
       redirect_to @genre
     else
       render :new
@@ -27,6 +28,7 @@ class GenresController < ApplicationController
 
   def update
     if @genre.update(genre_params)
+      flash[:success] = "Le genre a été modifiée avec succès."
       redirect_to @genre
     else
       render :edit
@@ -35,6 +37,7 @@ class GenresController < ApplicationController
 
   def destroy
     @genre.destroy
+    flash[:danger] = "Le genre a été supprimée avec succès."
     redirect_to genres_url
   end
 

@@ -21,6 +21,7 @@ class TvShowsController < ApplicationController
     @tv_show = TvShow.new(tv_show_params)
 
     if @tv_show.save
+      flash[:success] = "La série a été ajoutée avec succès."
       redirect_to @tv_show
     else
       render :new
@@ -29,6 +30,7 @@ class TvShowsController < ApplicationController
 
   def update
     if @tv_show.update(tv_show_params)
+      flash[:success] = "La série a été modifiée avec succès."
       redirect_to @tv_show
     else
       render :edit
@@ -37,22 +39,24 @@ class TvShowsController < ApplicationController
 
   def destroy
     @tv_show.destroy
+    flash[:danger] = "La série a été supprimée avec succès."
     redirect_to tv_shows_url
   end
 
   def my_tv_shows
     @my_tv_shows = UserTvShow.where(user_id: current_user).paginate(page: params[:page], per_page: 5)
-
     @tv_shows = TvShow.all
   end
 
   def add_user_tv_show
     UserTvShow.create!({:user => current_user, :tv_show => @tv_show })
+    flash[:success] = "La série a été ajoutée à votre compte avec succès."
     redirect_back(fallback_location: tv_shows_url)
   end
 
   def remove_user_tv_show
     UserTvShow.destroy_all(user: current_user, tv_show: @tv_show)
+    flash[:danger] = "La série a été supprimée de votre compte avec succès."
     redirect_back(fallback_location: tv_shows_url)
   end
 

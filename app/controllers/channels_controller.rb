@@ -19,6 +19,7 @@ class ChannelsController < ApplicationController
     @channel = Channel.new(channel_params)
 
     if @channel.save
+      flash[:success] = "La chaine a été ajoutée avec succès."
       redirect_to @channel
     else
       render :new
@@ -27,6 +28,7 @@ class ChannelsController < ApplicationController
 
   def update
     if @channel.update(channel_params)
+      flash[:success] = "La chaine a été modifiée avec succès."
       redirect_to @channel
     else
       render :edit
@@ -35,6 +37,7 @@ class ChannelsController < ApplicationController
 
   def destroy
     @channel.destroy
+    flash[:danger] = "La chaine a été supprimée avec succès."
     redirect_to channels_url
   end
 
