@@ -25,6 +25,6 @@ Episode.create(season: 1, episode: 1, title: "Apéritif", tv_show_id: 2)
 Episode.create(season: 1, episode: 3, title: "Homer's Odyssey", tv_show_id: 1)
 Episode.create(season: 1, episode: 1, title: "Space Pilot 3000", tv_show_id: 3)
 
-User.create!(email: 'admin@admin.admin', password: 'admin@admin.admin', password_confirmation: 'admin@admin.admin')
+User.create!(email: 'admin@admin.admin',username: 'jean-admin', password: 'admin@admin.admin', password_confirmation: 'admin@admin.admin')
 .add_role :admin
-User.create!(email: 'user@user.user', password: 'user@user.user', password_confirmation: 'user@user.user')
+User.create!(email: 'user@user.user',username: 'michel75002', password: 'user@user.user', password_confirmation: 'user@user.user')
