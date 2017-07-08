@@ -60,3 +60,5 @@ gem 'will_paginate-bootstrap'
 
 gem 'devise'
 gem 'devise-i18n'
+
+gem 'rolify'
