@@ -1,5 +1,6 @@
 class ChannelsController < ApplicationController
   before_action :set_channel, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   def index
     @channels = Channel.paginate(page: params[:page], per_page: 5)

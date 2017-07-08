@@ -1,5 +1,6 @@
 class GenresController < ApplicationController
   before_action :set_genre, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   def index
     @genres = Genre.paginate(page: params[:page], per_page: 5)

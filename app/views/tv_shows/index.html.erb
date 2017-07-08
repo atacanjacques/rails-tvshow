@@ -33,11 +33,13 @@
             <% end %>
           </td>
           <td><%= link_to 'Afficher', tv_show, class: 'btn btn-primary' %></td>
-          <td><%= link_to 'Modifier', edit_tv_show_path(tv_show), class: 'btn btn-warning' %></td>
-          <td><%= link_to 'Supprimer', tv_show,
+          <% if can? :manage, TvShow %>
+            <td><%= link_to 'Modifier', edit_tv_show_path(tv_show), class: 'btn btn-warning' %></td>
+            <td><%= link_to 'Supprimer', tv_show,
           method: :delete,
           data: {confirm: 'Etes-vous sûr de vouloir supprimer la série ?'},
           class: 'btn btn-danger' %></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>

@@ -5,5 +5,7 @@
 <p>Série : <%= @episode.tv_show.name %></p>
 <p>
   <%= link_to 'Liste des épisodes', episodes_path, class: 'btn btn-primary' %>
-  <%= link_to 'Modifier l\'épisode', edit_episode_path, class: 'btn btn-primary' %>
+  <% if can? :manage, Episode %>
+    <%= link_to 'Modifier l\'épisode', edit_episode_path, class: 'btn btn-primary' %>
+  <% end %>
 </p>

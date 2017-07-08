@@ -1,5 +1,6 @@
 class TvShowsController < ApplicationController
   before_action :set_tv_show, only: [:show, :edit, :update, :destroy, :add_user_tv_show, :remove_user_tv_show]
+  load_and_authorize_resource
 
   def index
     @tv_shows = TvShow.paginate(page: params[:page], per_page: 5)

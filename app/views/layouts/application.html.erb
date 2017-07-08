@@ -22,17 +22,19 @@
             <% if user_signed_in? %>
               <li><%= link_to "Mes séries suivies", my_tv_shows_tv_shows_path %></li>
               <li><%= link_to "Utilisateurs", users_extend_index_path %></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ajouter <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="<%= tv_shows_path %>">Séries</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li><a href="<%= episodes_path %>">Episodes</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li><a href="<%= channels_path %>">Chaine</a></li>
-                  <li><a href="<%= genres_path %>">Genres <i></i></a></li>
-                </ul>
-              </li>
+              <% if current_user && current_user.has_role?(:admin) %>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ajouter <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="<%= tv_shows_path %>">Séries</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="<%= episodes_path %>">Episodes</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="<%= channels_path %>">Chaine</a></li>
+                    <li><a href="<%= genres_path %>">Genres <i></i></a></li>
+                  </ul>
+                </li>
+              <% end %>
             <% end %>
           </ul>
           <ul class="nav navbar-nav navbar-right">

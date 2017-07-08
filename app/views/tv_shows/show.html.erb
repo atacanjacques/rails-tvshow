@@ -6,7 +6,9 @@
 <p>Genres : <%= render partial: 'genres_list', locals: { genres: @tv_show.genres } %></p>
 <p>
   <%= link_to 'Liste des séries', tv_shows_path, class: 'btn btn-primary' %>
-  <%= link_to 'Modifier la série', edit_tv_show_path, class: 'btn btn-primary' %>
+  <% if can? :manage, TvShow %>
+    <%= link_to 'Modifier la série', edit_tv_show_path, class: 'btn btn-primary' %>
+  <% end %>
 </p>
 <hr>
 <div class="panel panel-primary">
@@ -44,12 +46,14 @@
                 <% end %>
               </td>
               <td><%= link_to 'Afficher', episode, class: 'btn btn-primary' %></td>
-              <td><%= link_to 'Modifier', edit_episode_path(episode), class: 'btn btn-warning' %></td>
-              <td><%= link_to 'Supprimer', episode,
-		      method: :delete,
-		      data: {confirm: 'Etes-vous sûr de vouloir supprimer l\'épisode ?'},
-		      class: 'btn btn-danger' %></td>
-            </tr>
+              <% if can? :manage, Episode %>
+                <td><%= link_to 'Modifier', edit_episode_path(episode), class: 'btn btn-warning' %></td>
+                <td><%= link_to 'Supprimer', episode,
+          method: :delete,
+          data: {confirm: 'Etes-vous sûr de vouloir supprimer l\'épisode ?'},
+          class: 'btn btn-danger' %></td>
+              </tr>
+            <% end %>
           <% end %>
         </tbody>
       </table>

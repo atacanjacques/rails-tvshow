@@ -1,5 +1,6 @@
 class EpisodesController < ApplicationController
   before_action :set_episode, only: [:show, :edit, :update, :destroy, :add_user_episode,:remove_user_episode]
+  load_and_authorize_resource
 
   def index
     @episodes = Episode.paginate(page: params[:page], per_page: 5)
