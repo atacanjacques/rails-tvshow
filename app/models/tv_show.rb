@@ -8,4 +8,8 @@ class TvShow < ApplicationRecord
 
   has_many :user_tv_show
   has_many :users, through: :user_tv_show
+
+  def self.search(search)
+    where("name LIKE ?", "%#{search}%")
+  end
 end

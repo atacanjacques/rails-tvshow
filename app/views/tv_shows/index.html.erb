@@ -1,4 +1,8 @@
-<h1>Liste des séries</h1>
+<% if params[:search].present? %>
+  <h1>Liste des séries correspondant à la recherche : <%=params[:search] %></h1>
+<% else %>
+  <h1>Liste des séries</h1>
+<%end %>
 <% if @tv_shows.any? %>
   <%= will_paginate @tv_shows, renderer: BootstrapPagination::Rails %>
   <table class="table">
@@ -45,7 +49,11 @@
     </tbody>
   </table>
 <% else %>
-  <p>Il n'y a pas encore de séries.</p>
+  <% if params[:search].present? %>
+    <p>Aucune série correspond à la recherche : <%=params[:search] %></p>
+  <% else %>
+    <p>Il n'y a pas encore de séries.</p>
+  <%end %>
 <% end %>
 <p>
   <%= link_to 'Ajouter une série', new_tv_show_path, class: 'btn btn-success' %>

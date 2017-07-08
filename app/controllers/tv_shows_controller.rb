@@ -3,7 +3,11 @@ class TvShowsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @tv_shows = TvShow.paginate(page: params[:page], per_page: 5)
+    if params[:search]
+      @tv_shows = TvShow.search(params[:search]).paginate(page: params[:page], per_page: 5)
+    else
+      @tv_shows = TvShow.paginate(page: params[:page], per_page: 5)
+    end
   end
 
   def show
