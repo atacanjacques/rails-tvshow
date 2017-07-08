@@ -1,0 +1,21 @@
+<h1>Liste des utilisateurs</h1>
+<% if @users.any? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <td>Pseudo</td>
+        <td>Rôles</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.username %></td>
+          <td><%= render partial: 'roles_list', locals: { roles: user.roles } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>Il n'y a pas encore d'utilisateurs.</p>
+<% end %>
