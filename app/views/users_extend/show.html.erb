@@ -1,0 +1,42 @@
+<h1>Profil de : <%= @user.username %></h1>
+<p>
+  <%= link_to 'Liste des utilisateurs', users_extend_index_path, class: 'btn btn-primary' %>
+  <% if @user != current_user %>
+    <%= link_to 'Ajouter à mes amis', users_extend_path(user.username), class: 'btn btn-success' %>
+  <% end %>
+</p>
+<hr>
+<div class="panel panel-primary">
+  <div class="panel-heading">Les séries suivie par <%= @user.username %></div>
+  <div class="panel-body">
+    <% if @my_tv_shows.any? %>
+      <%= will_paginate @my_tv_shows, renderer: BootstrapPagination::Rails %>
+      <table class="table">
+        <thead>
+          <tr>
+            <td>Nom</td>
+            <td>Statut</td>
+            <td>Durée</td>
+            <td>Chaine</td>
+            <td>Genre</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @my_tv_shows.each do |my_tv_show| %>
+            <% the_tv_show = @tv_shows.where(id: my_tv_show.tv_show_id).first %>
+            <tr>
+              <td><%= the_tv_show.name %></td>
+              <td><%= the_tv_show.status ? tv_show_status_label(the_tv_show.status) : '&empty;'.html_safe %></td>
+              <td><%= the_tv_show.time > 1 ? (the_tv_show.time).to_s + ' minutes' : (the_tv_show.time).to_s + ' minute' %></td>
+              <td><%= the_tv_show.channel.name %></td>
+              <td><%= link_to 'Afficher', the_tv_show, class: 'btn btn-primary' %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p>Il n'y a pas encore de séries.</p>
+    <% end %>
+  </div>
+</div>
+</div>

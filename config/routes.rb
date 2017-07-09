@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :channels
   resources :genres
-  resources :users_extend, :path => 'users_list'
+  resources :users_extend, :path => 'users', param: :username, only: [:index, :show]
   resources :episodes do
     get 'add_user_episode', :on => :member
     get 'remove_user_episode', :on => :member

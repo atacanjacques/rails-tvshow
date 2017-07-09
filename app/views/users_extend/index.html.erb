@@ -12,6 +12,12 @@
         <tr>
           <td><%= user.username %></td>
           <td><%= render partial: 'roles_list', locals: { roles: user.roles } %></td>
+          <td>
+            <% if user != current_user %>
+              <%= link_to 'Ajouter à mes amis', users_extend_path(user.username), class: 'btn btn-success' %>
+            <% end %>
+          </td>
+          <td><%= link_to 'Afficher', users_extend_path(user.username), class: 'btn btn-primary' %></td>
         </tr>
       <% end %>
     </tbody>
