@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :users_extend, :path => 'users', param: :id, only: [:destroy]
   resources :users_extend, :path => 'users', param: :friend_id, only: [:add_friend, :remove_friend] do
     get 'add_friend', :on => :member
-    get 'add_friend', :on => :member
+    get 'remove_friend', :on => :member
   end
   resources :episodes do
     get 'add_user_episode', :on => :member

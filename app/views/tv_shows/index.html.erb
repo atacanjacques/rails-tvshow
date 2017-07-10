@@ -55,6 +55,8 @@
     <p>Il n'y a pas encore de séries.</p>
   <%end %>
 <% end %>
-<p>
-  <%= link_to 'Ajouter une série', new_tv_show_path, class: 'btn btn-success' %>
-</p>
+<% if can? :manage, TvShow %>
+  <p>
+    <%= link_to 'Ajouter une série', new_tv_show_path, class: 'btn btn-success' %>
+  </p>
+<% end %>
