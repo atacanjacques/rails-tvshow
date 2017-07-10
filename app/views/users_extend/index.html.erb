@@ -33,6 +33,10 @@
             <% end %>
           </td>
           <td><%= link_to 'Afficher', users_extend_path(user.username), class: 'btn btn-primary' %></td>
+          <td><%= link_to 'Supprimer', user,
+          method: :delete,
+          data: {confirm: 'Etes-vous sûr de vouloir supprimer la série ?'},
+          class: 'btn btn-danger' %></td>
         </tr>
       <% end %>
     </tbody>

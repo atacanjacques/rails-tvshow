@@ -1,12 +1,12 @@
 <%= simple_form_for @channel do |f| %>
-<div class="row">
-  <div class="form-group col-lg-5">
-    <p>
-      <%= f.input :name, label: 'Nom', class: 'form-control' %>
-    </p>
+  <div class="row">
+    <div class="form-group col-lg-5">
+      <p>
+        <%= f.input :name, label: 'Nom', class: 'form-control' %>
+      </p>
+    </div>
   </div>
-</div>
-<p>
-  <%= f.submit submit , class: 'btn btn-primary' %>
-</p>
+  <p>
+    <%= f.submit submit , class: 'btn btn-primary' %>
+  </p>
 <% end %>

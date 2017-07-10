@@ -1,42 +1,42 @@
 <%= simple_form_for @tv_show do |f| %>
-<div class="row">
-  <div class="form-group col-lg-5">
-    <p>
-      <%= f.input :name, label: 'Nom', class: 'form-control' %>
-    </p>
+  <div class="row">
+    <div class="form-group col-lg-5">
+      <p>
+        <%= f.input :name, label: 'Nom', class: 'form-control' %>
+      </p>
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="form-group col-lg-5">
-    <p>
-      <%= f.input :status,  :collection => [['Terminé',0],['En cours',1],['Annulé',2]], class: 'form-control' %>
-    </p>
+  <div class="row">
+    <div class="form-group col-lg-5">
+      <p>
+        <%= f.input :status,  :collection => [['Terminé',0],['En cours',1],['Annulé',2]], class: 'form-control' %>
+      </p>
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="form-group col-lg-5">
-    <p>
-      <%= f.input :time, label: 'Durée', class: 'form-control' %>
-    </p>
+  <div class="row">
+    <div class="form-group col-lg-5">
+      <p>
+        <%= f.input :time, label: 'Durée', class: 'form-control' %>
+      </p>
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="form-group col-lg-5">
-    <p>
-      <%= f.association :channel, label: 'Chaine', class: 'form-control' %>
-    </p>
+  <div class="row">
+    <div class="form-group col-lg-5">
+      <p>
+        <%= f.association :channel, label: 'Chaine', class: 'form-control' %>
+      </p>
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="form-group col-lg-5">
-    <p>
-      <%= f.association :genres, label: 'Genres',
+  <div class="row">
+    <div class="form-group col-lg-5">
+      <p>
+        <%= f.association :genres, label: 'Genres',
       as: :check_boxes,
       class: 'form-control' %>
-    </p>
+      </p>
+    </div>
   </div>
-</div>
-<p>
-  <%= f.submit submit , class: 'btn btn-primary' %>
-</p>
+  <p>
+    <%= f.submit submit , class: 'btn btn-primary' %>
+  </p>
 <% end %>

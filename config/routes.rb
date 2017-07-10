@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :channels
   resources :genres
   resources :users_extend, :path => 'users', param: :username, only: [:index, :show]
-  resources :users_extend, :path => 'users', param: :friend_id, only: [:add_friend] do
+  resources :users_extend, :path => 'users', param: :friend_id, only: [:add_friend, :remove_friend] do
     get 'add_friend', :on => :member
     get 'remove_friend', :on => :member
   end
