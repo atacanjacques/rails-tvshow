@@ -11,6 +11,15 @@ class UsersExtendController < ApplicationController
     @tv_shows = TvShow.all
   end
 
+  def destroy
+    @user = User.find(params[:id])
+
+    if @user.destroy
+      flash[:danger] = "Utilisateur supprimé."
+      redirect_back(fallback_location: tv_shows_url)
+    end
+  end
+
   def add_friend
     @friendship = current_user.friendships.build(:friend_id => params[:friend_id])
     @friendship.save
