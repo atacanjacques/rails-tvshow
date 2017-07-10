@@ -5,16 +5,31 @@
       <tr>
         <td>Pseudo</td>
         <td>Rôles</td>
+        <td>Abonnements</td>
+        <td>Abonnés</td>
       </tr>
     </thead>
     <tbody>
       <% @users.each do |user| %>
+        <% the_friendship = @friendships.where(friend_id: user.id).first %>
         <tr>
           <td><%= user.username %></td>
           <td><%= render partial: 'roles_list', locals: { roles: user.roles } %></td>
+          <td><span class="badge"><%= @friendships.where(user_id: user.id).count %></span></td>
+          <td><span class="badge"><%= @friendships.where(friend_id: user.id).count %></span></td>
           <td>
             <% if user != current_user %>
-              <%= link_to 'Ajouter à mes amis', users_extend_path(user.username), class: 'btn btn-success' %>
+              <% if current_user.friendships.include? the_friendship %>
+                <%= link_to 'Ne plus suivre', remove_friend_users_extend_path(:friend_id => user),
+          method: "get",
+          data: {confirm: 'Etes-vous sûr de ne plus suivre cet utilisateur ?'},
+          class: 'btn btn-danger' %>
+              <% else %>
+                <%= link_to 'Suivre', add_friend_users_extend_path(:friend_id => user),
+          method: "get",
+          data: {confirm: 'Etes-vous sûr de vouloir suivre cet utilisateur ?'},
+          class: 'btn btn-success' %>
+              <% end %>
             <% end %>
           </td>
           <td><%= link_to 'Afficher', users_extend_path(user.username), class: 'btn btn-primary' %></td>

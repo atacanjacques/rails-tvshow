@@ -35,6 +35,7 @@
                   </ul>
                 </li>
               <% end %>
+              <li><%= link_to "Mon profil", users_extend_path(current_user.username) %></li>
             <% end %>
           </ul>
           <% if user_signed_in? %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170708105745) do
+ActiveRecord::Schema.define(version: 20170709234358) do
 
   create_table "channels", force: :cascade do |t|
     t.string   "name"
@@ -26,6 +26,13 @@ ActiveRecord::Schema.define(version: 20170708105745) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["tv_show_id"], name: "index_episodes_on_tv_show_id"
+  end
+
+  create_table "friendships", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "friend_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "genres", force: :cascade do |t|
