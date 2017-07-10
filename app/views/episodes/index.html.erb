@@ -1,0 +1,48 @@
+<h1>Liste des épisodes</h1>
+<% if @episodes.any? %>
+  <%= will_paginate @episodes, renderer: BootstrapPagination::Rails %>
+  <table class="table">
+    <thead>
+      <tr>
+        <td>Saison</td>
+        <td>Episode</td>
+        <td>Titre</td>
+        <td>Série</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @episodes.each do |episode| %>
+        <tr>
+          <td><%= episode.season %></td>
+          <td><%= episode.episode %></td>
+          <td><%= episode.title %></td>
+          <td><%= episode.tv_show.name %></td>
+          <td>
+            <% if current_user.episodes.include? episode %>
+              <%= link_to 'Non vue', remove_user_episode_episode_path(episode),
+        method: "get",
+        data: {confirm: 'Etes-vous sûr de vouloir retirer l\'épisode de votre compte ?'},
+        class: 'btn btn-danger' %>
+            <% else %>
+              <%= link_to 'Vue', add_user_episode_episode_path(episode),
+        method: "get",
+        data: {confirm: 'Etes-vous sûr de vouloir ajouter l\'épisode à votre compte ?'},
+        class: 'btn btn-success' %>
+            <% end %>
+          </td>
+          <td><%= link_to 'Afficher', episode, class: 'btn btn-primary' %></td>
+          <td><%= link_to 'Modifier', edit_episode_path(episode), class: 'btn btn-warning' %></td>
+          <td><%= link_to 'Supprimer', episode,
+        method: :delete,
+        data: {confirm: 'Etes-vous sûr de vouloir supprimer l\'épisode ?'},
+        class: 'btn btn-danger' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>Il n'y a pas encore d'épisodes.</p>
+<% end %>
+<p>
+  <%= link_to 'Ajouter un épisode', new_episode_path, class: 'btn btn-success' %>
+</p>

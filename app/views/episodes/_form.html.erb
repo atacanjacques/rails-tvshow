@@ -1,0 +1,33 @@
+<%= simple_form_for @episode do |f| %>
+  <div class="row">
+    <div class="form-group col-lg-5">
+      <p>
+        <%= f.input :season, label: 'Saison', class: 'form-control' %>
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-lg-5">
+      <p>
+        <%= f.input :episode, label: 'Episode', class: 'form-control' %>
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-lg-5">
+      <p>
+        <%= f.input :title, label: 'Titre', class: 'form-control' %>
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-lg-5">
+      <p>
+        <%= f.association :tv_show, label: 'Série', class: 'form-control' %>
+      </p>
+    </div>
+  </div>
+  <p>
+    <%= f.submit submit , class: 'btn btn-primary' %>
+  </p>
+<% end %>

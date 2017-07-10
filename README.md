@@ -1,15 +1,15 @@
 # tvshow
 A Ruby tvshow application (ESGI sutdents work 16-17)
 
-Install command:
+Show models association
+```sh
+Model.reflect_on_all_associations
+```
 
-rails new [NAME]
-bundle install 
-rails generate scaffold [TYPE ENTITY] [name of the entity:type]
+Seeds
+```sh
+rails db:drop
+rails db:create
 rails db:migrate
-rails server
-rails console
-rails console --sandbox
-rails routes
-
-mail: cours@rhannequ.in
+rails db:seed
+```

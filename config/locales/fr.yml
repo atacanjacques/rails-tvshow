@@ -1,0 +1,4 @@
+fr:
+  will_paginate:
+    previous_label: "&#12296; Précédent"
+    next_label: "Suivant &#12297;"

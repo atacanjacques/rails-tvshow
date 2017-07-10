@@ -1,0 +1,7 @@
+<% if genres.any?%>
+  <%= raw genres.map { |element| element.name }
+.join(', ')
+%>
+<% else %>
+  &empty;
+<% end %>

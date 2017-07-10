@@ -1,0 +1,7 @@
+<% if roles.any?%>
+  <%= raw roles.map { |element| users_extend_role_label(element.name) }
+.join(' ')
+%>
+<% else %>
+  &empty;
+<% end %>

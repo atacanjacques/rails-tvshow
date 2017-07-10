@@ -1,0 +1,52 @@
+<h1>Liste des utilisateurs</h1>
+<% if @users.any? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <td>Pseudo</td>
+        <td>Rôles</td>
+        <td>Abonnements</td>
+        <td>Abonnés</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <% the_friendship = @friendships.where(friend_id: user.id).first %>
+        <tr>
+          <td><%= user.username %></td>
+          <td><%= render partial: 'roles_list', locals: { roles: user.roles } %></td>
+          <td><span class="badge"><%= @friendships.where(user_id: user.id).count %></span></td>
+          <td><span class="badge"><%= @friendships.where(friend_id: user.id).count %></span></td>
+          <td>
+            <% if user != current_user %>
+              <% if current_user.friendships.include? the_friendship %>
+                <%= link_to 'Ne plus suivre', remove_friend_users_extend_path(:friend_id => user),
+          method: "get",
+          data: {confirm: 'Etes-vous sûr de ne plus suivre cet utilisateur ?'},
+          class: 'btn btn-danger' %>
+              <% else %>
+                <%= link_to 'Suivre', add_friend_users_extend_path(:friend_id => user),
+          method: "get",
+          data: {confirm: 'Etes-vous sûr de vouloir suivre cet utilisateur ?'},
+          class: 'btn btn-success' %>
+              <% end %>
+            <% end %>
+          </td>
+          <td><%= link_to 'Afficher', users_extend_path(user.username), class: 'btn btn-primary' %></td>
+          <% if can? :manage, User %>
+            <td>
+              <% if user != current_user %>
+                <%= link_to 'Supprimer', users_extend_path(user),
+          method: :delete,
+          data: {confirm: 'Etes-vous sûr de vouloir supprimer la série ?'},
+          class: 'btn btn-danger' %>
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>Il n'y a pas encore d'utilisateurs.</p>
+<% end %>
