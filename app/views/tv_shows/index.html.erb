@@ -21,7 +21,7 @@
           <td><%= tv_show.name %></td>
           <td><%= tv_show.status ? tv_show_status_label(tv_show.status) : '&empty;'.html_safe %></td>
           <td><%= tv_show.time > 1 ? (tv_show.time).to_s + ' minutes' : (tv_show.time).to_s + ' minute' %></td>
-          <td><%= tv_show.channel.name %></td>
+          <td><%= !tv_show.channel.blank? ? tv_show.channel.name : '&empty;'.html_safe %></td>
           <td><%= render partial: 'genres_list', locals: { genres: tv_show.genres } %></td>
           <td>
             <% if current_user.tv_shows.include? tv_show %>

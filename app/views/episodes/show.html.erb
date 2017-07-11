@@ -2,7 +2,7 @@
 <p>Saison : <%= @episode.season %></p>
 <p>Episode : <%= @episode.episode %></p>
 <p>Titre : <%= @episode.title %></p>
-<p>Série : <%= @episode.tv_show.name %></p>
+<p>Série : <%= !@episode.tv_show.blank? ? @episode.tv_show.name : '&empty;'.html_safe %></p>
 <p>
   <%= link_to 'Liste des épisodes', episodes_path, class: 'btn btn-primary' %>
   <% if can? :manage, Episode %>
