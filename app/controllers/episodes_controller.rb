@@ -3,7 +3,7 @@ class EpisodesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @episodes = Episode.paginate(page: params[:page], per_page: 5)
+    @episodes = Episode.includes(:tv_show).paginate(page: params[:page], per_page: 5)
   end
 
   def show

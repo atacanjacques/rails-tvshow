@@ -2,7 +2,7 @@ class UsersExtendController < ApplicationController
   before_action :set_friendship, only: [:index, :show]
 
   def index
-    @users = User.paginate(page: params[:page], per_page: 5)
+    @users = User.includes(:roles).paginate(page: params[:page], per_page: 5)
   end
 
   def show

@@ -4,14 +4,14 @@ class TvShowsController < ApplicationController
 
   def index
     if params[:search]
-      @tv_shows = TvShow.search(params[:search]).paginate(page: params[:page], per_page: 5)
+      @tv_shows = TvShow.includes(:channel, :genres).search(params[:search]).paginate(page: params[:page], per_page: 5)
     else
-      @tv_shows = TvShow.paginate(page: params[:page], per_page: 5)
+      @tv_shows = TvShow.includes(:channel, :genres).paginate(page: params[:page], per_page: 5)
     end
   end
 
   def show
-    @episodes = Episode.where(tv_show_id: params[:id]).paginate(page: params[:page], per_page: 5)
+    @episodes = Episode.includes(:tv_show).where(tv_show_id: params[:id]).paginate(page: params[:page], per_page: 5)
     @my_episodes = UserEpisode.where(user_id: current_user).paginate(page: params[:page], per_page: 5)
   end
 
