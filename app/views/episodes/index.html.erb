@@ -16,7 +16,7 @@
           <td><%= episode.season %></td>
           <td><%= episode.episode %></td>
           <td><%= episode.title %></td>
-          <td><%= episode.tv_show.name %></td>
+          <td><%= !episode.tv_show.blank? ? episode.tv_show.name : '&empty;'.html_safe %></td>
           <td>
             <% if current_user.episodes.include? episode %>
               <%= link_to 'Non vue', remove_user_episode_episode_path(episode),

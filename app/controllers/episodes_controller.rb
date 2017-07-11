@@ -44,7 +44,7 @@ class EpisodesController < ApplicationController
 
   def add_user_episode
     tv_show = @episode.tv_show
-    if !current_user.tv_shows.include? tv_show
+    if !tv_show.blank? && !current_user.tv_shows.include?(tv_show)
       UserTvShow.create!({:user => current_user, :tv_show => tv_show })
     end
     UserEpisode.create!({:user => current_user, :episode => @episode })

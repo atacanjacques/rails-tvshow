@@ -64,3 +64,5 @@ gem 'devise-i18n'
 gem 'rolify'
 
 gem 'cancancan'
+
+gem 'bullet', :group => :development
