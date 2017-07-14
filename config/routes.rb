@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, :skip => [:confirmations]
   resources :channels
   resources :genres
   resources :users_extend, :path => 'users', param: :username, only: [:index, :show]
@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   resources :episodes do
     get 'add_user_episode', :on => :member
     get 'remove_user_episode', :on => :member
-    get 'my_episodes', :on => :collection
   end
   resources :tv_shows do
     get 'add_user_tv_show', :on => :member
