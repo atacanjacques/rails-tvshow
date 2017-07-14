@@ -50,6 +50,7 @@ GEM
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
+    brakeman (3.7.0)
     builder (3.2.3)
     bullet (5.5.1)
       activesupport (>= 3.0.0)
@@ -195,6 +196,7 @@ DEPENDENCIES
   autoprefixer-rails
   better_errors
   bootstrap-sass
+  brakeman
   bullet
   byebug
   cancancan
